@@ -85,3 +85,27 @@ endfunction()
 
 # Compress and install man page
 install_man(xkb-switch 1)
+
+###############
+#  Packaging  #
+###############
+
+SET(CPACK_GENERATOR "DEB")
+SET(CPACK_PACKAGE_NAME "xkb-switch")
+SET(CPACK_PACKAGE_VERSION_MAJOR ${MAJOR_VERSION})
+SET(CPACK_PACKAGE_VERSION_MINOR ${MINOR_VERSION})
+SET(CPACK_PACKAGE_VERSION_PATCH ${RELEASE_VERSION})
+SET(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "xkb-switch is a C++ program that allows to query and change the XKB layout state.")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "kiba <zombie32@gmail.com>")
+SET(CPACK_DEBIAN_PACKAGE_SECTION "misc")
+SET(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+SET(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+SET(PACKAGE_RELEASE_NUMBER 1)
+
+# http://www.debian.org/doc/manuals/debian-faq/ch-pkg_basics.en.html#s-pkgname
+# The Debian binary package file names conform to the following convention:
+# <foo>_<VersionNumber>-<DebianRevisionNumber>_<DebianArchitecture>.deb
+SET(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}_${CPACK_PACKAGE_VERSION}-${PACKAGE_RELEASE_NUMBER}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}")
+
+INCLUDE(CPack)
